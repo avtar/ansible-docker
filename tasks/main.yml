@@ -1,0 +1,15 @@
+---
+
+- name: Ensure Docker is installed
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - docker-{{ docker_package_version }}
+    - python-docker-py
+
+- name: Start and enable Docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes
